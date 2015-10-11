@@ -1,5 +1,5 @@
-# Contributing to RubyFreedomMod #
-RubyFreedom is a Spigot plugin forked off of the TotalFreedomMod. TotalFreedomMod is a CraftBukkit server plugin designed primarily to support the [Official TotalFreedom Minecraft Server](http://totalfreedom.me/).
+# Contributing to RFreedomMod #
+RFreedom is a Spigot plugin forked off of the TotalFreedomMod. TotalFreedomMod is a CraftBukkit server plugin designed primarily to support the [Official TotalFreedom Minecraft Server](http://totalfreedom.me/).
 
 For those who wish to contribute, we encourage you to fork the repository and submit pull requests. Below you will find guidelines that explain this process in further detail.
 
