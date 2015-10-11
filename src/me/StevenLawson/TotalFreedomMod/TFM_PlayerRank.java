@@ -4,7 +4,6 @@ import me.StevenLawson.TotalFreedomMod.Config.TFM_ConfigEntry;
 import static me.StevenLawson.TotalFreedomMod.TFM_Util.RF_DEVELOPERS;
 import static me.StevenLawson.TotalFreedomMod.TFM_Util.FOP_DEVELOPERS;
 import static me.StevenLawson.TotalFreedomMod.TFM_Util.DEVELOPERS;
-import static me.StevenLawson.TotalFreedomMod.TFM_Util.EXECUTIVE;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
