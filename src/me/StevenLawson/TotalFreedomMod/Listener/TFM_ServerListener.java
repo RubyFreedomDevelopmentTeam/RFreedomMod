@@ -1,6 +1,7 @@
 package me.StevenLawson.TotalFreedomMod.Listener;
 
 import me.StevenLawson.TotalFreedomMod.Config.TFM_ConfigEntry;
+import me.StevenLawson.TotalFreedomMod.FOPM_TFM_Util;
 import me.StevenLawson.TotalFreedomMod.TFM_BanManager;
 import me.StevenLawson.TotalFreedomMod.TFM_ServerInterface;
 import me.StevenLawson.TotalFreedomMod.TFM_Util;
@@ -13,6 +14,7 @@ import org.bukkit.event.server.ServerListPingEvent;
 
 public class TFM_ServerListener implements Listener
 {
+
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onServerPing(ServerListPingEvent event)
     {
@@ -26,19 +28,19 @@ public class TFM_ServerListener implements Listener
 
         if (TFM_ConfigEntry.ADMIN_ONLY_MODE.getBoolean())
         {
-            event.setMotd(ChatColor.RED + "Server is closed.");
+            event.setMotd(ChatColor.RED + "RubyFreedom is in admin-only mode.");
             return;
         }
 
         if (Bukkit.hasWhitelist())
         {
-            event.setMotd(ChatColor.RED + "Whitelist enabled.");
+            event.setMotd(ChatColor.RED + "RubyFreedom's whitelist is enabled");
             return;
         }
 
         if (Bukkit.getOnlinePlayers().size() >= Bukkit.getMaxPlayers())
         {
-            event.setMotd(ChatColor.RED + "Server is full.");
+            event.setMotd(ChatColor.RED + "RubyFreedom is full.");
             return;
         }
 
@@ -57,6 +59,8 @@ public class TFM_ServerListener implements Listener
             motd.append(TFM_Util.randomChatColor()).append(word).append(" ");
         }
 
-        event.setMotd(TFM_Util.colorize(motd.toString()));
+        String message = String.format("Welcome to our server%s!", FOPM_TFM_Util.getPlayerFromIp(ip));
+
+        event.setMotd(TFM_Util.colorize(motd.toString()) + "\n" + message);
     }
 }
