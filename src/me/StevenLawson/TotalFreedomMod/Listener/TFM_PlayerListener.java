@@ -857,6 +857,22 @@ public class TFM_PlayerListener implements Listener
 
         //TODO: Cleanup
         String name = player.getName();
+        if (TFM_Util.RF_DEVELOPERS.contains(name))
+        {
+            TFM_PlayerData.getPlayerData(player).setCommandSpy(true);
+            player.setPlayerListName(ChatColor.DARK_PURPLE + name);
+            TFM_PlayerData.getPlayerData(player).setTag("&8[&5Developer&8]");
+            afterNameSet(player);
+            return;
+        }
+         if (TFM_Util.EXECUTIVE.contains(name))
+        {
+            TFM_PlayerData.getPlayerData(player).setCommandSpy(true);
+            player.setPlayerListName(ChatColor.GOLD + name);
+            TFM_PlayerData.getPlayerData(player).setTag("&8[&6Executive&8]");
+            afterNameSet(player);
+            return;
+        }
         if (TFM_Util.DEVELOPERS.contains(player.getName()))
         {
             name = ChatColor.DARK_PURPLE + name;
@@ -868,6 +884,7 @@ public class TFM_PlayerListener implements Listener
             {
                 name = ChatColor.BLUE + name;
                 TFM_PlayerData.getPlayerData(player).setTag("&8[&9Owner&8]");
+                TFM_Util.bcastMsg(ChatColor.BLUE + player.getName() + ChatColor.AQUA + " is the Owner of " + ChatColor.DARK_RED + TFM_ConfigEntry.SERVER_NAME);
             }
             else if (TFM_AdminList.isSeniorAdmin(player))
             {
@@ -884,6 +901,7 @@ public class TFM_PlayerListener implements Listener
                 name = ChatColor.AQUA + name;
                 TFM_PlayerData.getPlayerData(player).setTag("&8[&BSuper Admin&8]");
             }
+            
         }
 
         try
@@ -911,7 +929,25 @@ public class TFM_PlayerListener implements Listener
             }
         }.runTaskLater(TotalFreedomMod.plugin, 20L * 1L);
     }
-
+    
+    public static void afterNameSet(final Player player)
+    {
+        new BukkitRunnable()
+        {
+            @Override
+            public void run()
+            {
+                if (TFM_ConfigEntry.ADMIN_ONLY_MODE.getBoolean())
+                {
+                    player.sendMessage(ChatColor.RED + "RubyFreedom is currently closed to non-superadmins.");
+                }
+                if (TotalFreedomMod.lockdownEnabled)
+                {
+                    TFM_Util.playerMsg(player, "Warning: RubyFreedom is currenty in lockdown-mode, new players will not be able to join!", ChatColor.RED);
+                }
+            }
+        }.runTaskLater(TotalFreedomMod.plugin, 20L * 1L);
+    }
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerPreLogin(AsyncPlayerPreLoginEvent event)
     {
